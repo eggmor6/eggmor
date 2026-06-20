@@ -1,1 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eggmor — More Fresh. More Healthy. More Protein.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAFAF7;
+    --sage: #E8EFE3;
+    --green: #1B6E3C;
+    --green-dark: #14502B;
+    --gold: #F2B705;
+    --charcoal: #2A2A28;
+    --charcoal-soft: #5A5A56;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--charcoal);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    color: var(--green-dark);
+    letter-spacing: -0.01em;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  img { max-width: 100%; display: block; }
+
+  .wrap {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(250, 250, 247, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(27, 110, 60, 0.08);
+  }
+
+  nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 76px;
+  }
+
+  .logo-img { height: 36px; width: auto; }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--charcoal-soft);
+  }
+
+  .nav-links a:hover { color: var(--green); }
+
+  .nav-cta {
+    background: var(--green);
+    color: white;
+    padding: 10px 22px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.2s ease;
+  }
+
+  .nav-cta:hover { background: var(--green-dark); }
+
+  .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(27, 110, 60, 0.2);
+    color: var(--green-dark);
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .social-icon:hover {
+    background: var(--green);
+    border-color: var(--green);
+    color: white;
+  }
+
+  .social-icon svg { width: 18px; height: 18px; }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .footer-social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    color: white;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .footer-social:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.5);
+  }
+
+  .footer-social svg { width: 18px; height: 18px; }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    padding: 96px 0 80px;
+    overflow: hidden;
+  }
+
+  .hero .wrap {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--green);
+    background: var(--sage);
+    padding: 7px 16px;
+    border-radius: 100px;
+    margin-bottom: 22px;
+  }
+
+  .hero h1 {
+    font-size: clamp(40px, 5.2vw, 60px);
+    line-height: 1.04;
+    margin-bottom: 22px;
+  }
+
+  .hero h1 .accent { color: var(--gold); position: relative; }
+
+  .hero p.lede {
+    font-size: 18px;
+    color: var(--charcoal-soft);
+    max-width: 460px;
+    margin-bottom: 32px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--green);
+    color: white;
+    padding: 15px 28px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 15px;
+    display: inline-block;
+    transition: transform 0.15s ease, background 0.2s ease;
+  }
+
+  .btn-primary:hover { background: var(--green-dark); transform: translateY(-1px); }
+
+  .btn-ghost {
+    border: 1.5px solid rgba(27, 110, 60, 0.25);
+    color: var(--green-dark);
+    padding: 15px 28px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 15px;
+    display: inline-block;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .btn-ghost:hover { border-color: var(--green); background: var(--sage); }
+
+  /* signature yolk illustration */
+  .yolk-art {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .egg-white {
+    position: absolute;
+    width: 88%;
+    height: 88%;
+    background: white;
+    border-radius: 48% 52% 54% 46% / 50% 48% 52% 50%;
+    box-shadow: 0 30px 60px -20px rgba(27, 110, 60, 0.22), inset 0 0 0 2px rgba(27,110,60,0.06);
+  }
+
+  .egg-yolk {
+    position: relative;
+    width: 38%;
+    height: 38%;
+    background: radial-gradient(circle at 35% 30%, #FFD23F 0%, var(--gold) 60%, #D89C00 100%);
+    border-radius: 50%;
+    box-shadow: 0 8px 24px -6px rgba(210, 150, 0, 0.5);
+    animation: jiggle 6s ease-in-out infinite;
+  }
+
+  .egg-yolk::after {
+    content: '';
+    position: absolute;
+    top: 18%;
+    left: 22%;
+    width: 26%;
+    height: 16%;
+    background: rgba(255,255,255,0.55);
+    border-radius: 50%;
+    filter: blur(1px);
+  }
+
+  @keyframes jiggle {
+    0%, 100% { transform: scale(1) translateY(0); }
+    50% { transform: scale(1.03) translateY(-3px); }
+  }
+
+  .ray {
+    position: absolute;
+    background: var(--gold);
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .egg-yolk { animation: none; }
+  }
+
+  @media (max-width: 880px) {
+    .hero .wrap { grid-template-columns: 1fr; }
+    .yolk-art { max-width: 320px; margin: 0 auto; order: -1; }
+    .hero p.lede { max-width: 100%; }
+  }
+
+  /* ---------- STATS STRIP ---------- */
+  .stats {
+    background: var(--green-dark);
+    padding: 36px 0;
+  }
+
+  .stats .wrap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    text-align: center;
+  }
+
+  .stats .num {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 3.4vw, 38px);
+    color: var(--gold);
+  }
+
+  .stats .label {
+    font-size: 14px;
+    color: rgba(255,255,255,0.8);
+    margin-top: 4px;
+  }
+
+  @media (max-width: 600px) {
+    .stats .wrap { grid-template-columns: 1fr; gap: 28px; }
+  }
+
+  /* ---------- VALUES ---------- */
+  .values {
+    padding: 96px 0;
+  }
+
+  .section-head {
+    max-width: 580px;
+    margin-bottom: 56px;
+  }
+
+  .section-head .eyebrow { background: transparent; padding-left: 0; }
+
+  .section-head h2 {
+    font-size: clamp(30px, 3.6vw, 40px);
+    line-height: 1.1;
+  }
+
+  .value-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .value-card {
+    background: white;
+    border-radius: 20px;
+    padding: 36px 28px;
+    border: 1px solid rgba(27, 110, 60, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .value-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -16px rgba(27, 110, 60, 0.15);
+  }
+
+  .value-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: var(--sage);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+
+  .value-card h3 {
+    font-size: 19px;
+    margin-bottom: 10px;
+  }
+
+  .value-card p {
+    font-size: 15px;
+    color: var(--charcoal-soft);
+  }
+
+  @media (max-width: 880px) {
+    .value-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- JOURNEY / FRESHNESS PATH ---------- */
+  .journey {
+    background: var(--sage);
+    padding: 96px 0;
+  }
+
+  .journey-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+    margin-top: 56px;
+  }
+
+  .journey-grid::before {
+    content: '';
+    position: absolute;
+    top: 26px;
+    left: 6%;
+    right: 6%;
+    height: 2px;
+    background: repeating-linear-gradient(to right, var(--green) 0, var(--green) 8px, transparent 8px, transparent 16px);
+    opacity: 0.4;
+  }
+
+  .journey-step {
+    text-align: center;
+    padding: 0 16px;
+    position: relative;
+  }
+
+  .journey-dot {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--green);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    margin: 0 auto 18px;
+    position: relative;
+    z-index: 2;
+    font-size: 18px;
+  }
+
+  .journey-step h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .journey-step p {
+    font-size: 14px;
+    color: var(--charcoal-soft);
+  }
+
+  @media (max-width: 880px) {
+    .journey-grid { grid-template-columns: 1fr; gap: 36px; }
+    .journey-grid::before { display: none; }
+  }
+
+  /* ---------- CTA BANNER ---------- */
+  .cta-banner {
+    padding: 96px 0;
+    text-align: center;
+  }
+
+  .cta-banner h2 {
+    font-size: clamp(28px, 4vw, 42px);
+    max-width: 640px;
+    margin: 0 auto 18px;
+    line-height: 1.15;
+  }
+
+  .cta-banner p {
+    color: var(--charcoal-soft);
+    font-size: 17px;
+    max-width: 480px;
+    margin: 0 auto 32px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--green-dark);
+    color: rgba(255,255,255,0.75);
+    padding: 48px 0 32px;
+  }
+
+  footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-logo { height: 28px; filter: brightness(0) invert(1); opacity: 0.9; }
+
+  footer .links {
+    display: flex;
+    gap: 28px;
+    font-size: 14px;
+  }
+
+  footer .links a:hover { color: white; }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.12);
+    margin-top: 32px;
+    padding-top: 24px;
+    font-size: 13px;
+    text-align: center;
+    color: rgba(255,255,255,0.5);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <img src="logo.jpg" alt="Eggmor" class="logo-img" style="mix-blend-mode: multiply;">
+    <div class="nav-links">
+      <a href="#values">Why Eggmor</a>
+      <a href="#journey">Our process</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://instagram.com/Eggmor_eggs" target="_blank" rel="noopener" class="social-icon" aria-label="Eggmor on Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+      </a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Farm fresh, daily</span>
+      <h1>More fresh.<br>More healthy.<br>More <span class="accent">protein</span>.</h1>
+      <p class="lede">Eggmor delivers eggs the way they're meant to be — collected fresh, packed with care, and built into your day as real, simple protein.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn-primary">Find Eggmor near you</a>
+        <a href="#values" class="btn-ghost">Why it matters</a>
+      </div>
+    </div>
+    <div class="yolk-art">
+      <div class="egg-white"></div>
+      <div class="egg-yolk"></div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="wrap">
+    <div>
+      <div class="num">6g</div>
+      <div class="label">Protein per egg</div>
+    </div>
+    <div>
+      <div class="num">24hr</div>
+      <div class="label">Farm to shelf</div>
+    </div>
+    <div>
+      <div class="num">0</div>
+      <div class="label">Additives, ever</div>
+    </div>
+  </div>
+</section>
+
+<section class="values" id="values">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Why Eggmor</span>
+      <h2>An egg is simple. We just refuse to make it complicated.</h2>
+    </div>
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="value-icon">🌱</div>
+        <h3>More fresh</h3>
+        <p>Collected daily and moved fast — no long warehouse stays, no guessing how old your carton really is.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">💪</div>
+        <h3>More protein</h3>
+        <p>Every egg carries real, complete protein — the kind your body uses well, not the kind that's just a label claim.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🐔</div>
+        <h3>More healthy</h3>
+        <p>Hens raised with room to move and a proper diet. Healthier hens are simply where healthier eggs start.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="journey" id="journey">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:0;">
+      <span class="eyebrow">Our process</span>
+      <h2>From coop to your kitchen, fast</h2>
+    </div>
+    <div class="journey-grid">
+      <div class="journey-step">
+        <div class="journey-dot">1</div>
+        <h3>Collected</h3>
+        <p>Gathered fresh each morning at the farm.</p>
+      </div>
+      <div class="journey-step">
+        <div class="journey-dot">2</div>
+        <h3>Checked</h3>
+        <p>Graded for quality, shell, and weight.</p>
+      </div>
+      <div class="journey-step">
+        <div class="journey-dot">3</div>
+        <h3>Packed</h3>
+        <p>Sealed same-day to lock in freshness.</p>
+      </div>
+      <div class="journey-step">
+        <div class="journey-dot">4</div>
+        <h3>Delivered</h3>
+        <p>On shelves within 24 hours, not weeks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner" id="contact">
+  <div class="wrap">
+    <h2>Ready for more fresh, more healthy, more protein?</h2>
+    <p>Reach out to find Eggmor near you, or to talk about stocking it in your store.</p>
+    <a href="mailto:hello@eggmor.com" class="btn-primary">hello@eggmor.com</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <img src="logo.jpg" alt="Eggmor" class="footer-logo">
+    <div class="links">
+      <a href="#values">Why Eggmor</a>
+      <a href="#journey">Our process</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="https://instagram.com/Eggmor_eggs" target="_blank" rel="noopener" class="footer-social" aria-label="Eggmor on Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+    </a>
+  </div>
+  <div class="wrap footer-bottom">
+    © 2026 Eggmor. More fresh. More healthy. More protein.
+  </div>
+</footer>
+
+</body>
+</html>
 
