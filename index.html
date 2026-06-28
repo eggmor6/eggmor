@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eggmor — Fresh Eggs, No Refrigeration Needed</title>
+<meta name="description" content="Eggmor delivers cage-free, farm-fresh eggs without refrigeration or cold storage. Packs of 6, 12 & 30 for homes, restaurants, canteens and cloud kitchens.">
+
+<link rel="icon" href="assets/eggmor-logo.webp" type="image/webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --green: #036A31;
+    --green-deep: #024d23;
+    --yolk: #FEBF12;
+    --yolk-soft: #FFD65C;
+    --shell: #FBF8F2;
+    --sage: #E9F0E4;
+    --charcoal: #23291F;
+    --charcoal-soft: #57604f;
+    --line: #d8e0d0;
+    --radius-card: 22px;
+    --max: 1180px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    background:var(--shell);
+    color:var(--charcoal);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:'Quicksand', sans-serif; font-weight:700; color:var(--green-deep); line-height:1.15;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 24px;}
+  section{padding:88px 0;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Quicksand', sans-serif; font-weight:600;
+    font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--green); margin-bottom:14px;
+  }
+  .eyebrow::before{
+    content:""; width:8px; height:8px; border-radius:50%;
+    background:var(--yolk); display:inline-block;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:14px 28px; border-radius:999px;
+    background:var(--green); color:#fff;
+    font-family:'Quicksand', sans-serif; font-weight:600; font-size:0.95rem;
+    border:none; cursor:pointer; transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    box-shadow:0 6px 18px rgba(3,106,49,0.25);
+  }
+  .btn:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(3,106,49,0.32);}
+  .btn.ghost{
+    background:transparent; color:var(--green); border:2px solid var(--green);
+    box-shadow:none;
+  }
+  .btn.ghost:hover{background:var(--green); color:#fff;}
+
+  /* ===== egg motif clip path, used as recurring signature shape ===== */
+  .egg-frame{
+    clip-path: path('M150 0 C235 0 300 110 300 230 C300 330 235 400 150 400 C65 400 0 330 0 230 C0 110 65 0 150 0 Z');
+    aspect-ratio: 150/200;
+    width:100%;
+    object-fit:cover;
+    background:var(--sage);
+  }
+
+  /* ===== reveal-on-scroll ===== */
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ===================== HEADER ===================== */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(251,248,242,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px; max-width:var(--max); margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand img{height:34px; width:auto;}
+  .nav-links{display:flex; gap:30px; align-items:center;}
+  .nav-links a{
+    font-family:'Quicksand', sans-serif; font-weight:600; font-size:0.93rem;
+    color:var(--charcoal); position:relative; padding:4px 0;
+  }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:-2px; width:0; height:2px;
+    background:var(--yolk); transition:width .25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{display:flex; gap:12px;}
+  .menu-toggle{display:none; background:none; border:none; cursor:pointer; padding:6px;}
+  .menu-toggle span{display:block; width:24px; height:2px; background:var(--green-deep); margin:5px 0; border-radius:2px;}
+
+  @media (max-width:880px){
+    .nav-links{
+      position:fixed; top:64px; left:0; right:0; bottom:0;
+      background:var(--shell); flex-direction:column; justify-content:flex-start;
+      padding:40px 24px; gap:26px; transform:translateX(100%);
+      transition:transform .3s ease; font-size:1.1rem;
+    }
+    .nav-links.open{transform:translateX(0);}
+    .menu-toggle{display:block;}
+    .nav-cta .btn span.full{display:none;}
+  }
+
+  /* ===================== HERO ===================== */
+  .hero{
+    padding:70px 0 60px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; top:-180px; right:-180px;
+    width:520px; height:520px; border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, var(--yolk-soft), transparent 70%);
+    opacity:0.5; z-index:0;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:center;
+    position:relative; z-index:1;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 4.6vw, 3.6rem);
+    margin-bottom:20px;
+  }
+  .hero h1 em{
+    font-style:normal; color:var(--yolk); -webkit-text-stroke:0;
+    position:relative;
+  }
+  .hero p.lead{
+    font-size:1.12rem; color:var(--charcoal-soft); max-width:480px; margin-bottom:32px;
+  }
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:36px;}
+  .hero-stats{display:flex; gap:36px; flex-wrap:wrap;}
+  .hero-stats div strong{
+    display:block; font-family:'Quicksand'; font-weight:700; font-size:1.7rem; color:var(--green);
+  }
+  .hero-stats div span{font-size:0.85rem; color:var(--charcoal-soft);}
+
+  .hero-visual{position:relative; display:flex; justify-content:center;}
+  .yolk-orb{
+    width:min(380px, 86vw); aspect-ratio:1; border-radius:50%;
+    background:radial-gradient(circle at 32% 28%, #fff7da 0%, var(--yolk-soft) 22%, var(--yolk) 55%, #d99900 100%);
+    box-shadow:0 30px 60px -20px rgba(3,106,49,0.35), inset -10px -14px 30px rgba(150,90,0,0.25);
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+    animation: float 5s ease-in-out infinite;
+  }
+  @keyframes float{
+    0%,100%{transform:translateY(0px);}
+    50%{transform:translateY(-14px);}
+  }
+  .yolk-orb .shine{
+    position:absolute; top:18%; left:24%; width:26%; height:18%;
+    background:rgba(255,255,255,0.7); border-radius:50%; filter:blur(2px);
+  }
+  .yolk-orb .badge{
+    background:#fff; color:var(--green-deep); font-family:'Quicksand'; font-weight:700;
+    padding:10px 18px; border-radius:999px; font-size:0.85rem;
+    box-shadow:0 10px 24px rgba(0,0,0,0.12);
+  }
+  .orbit-tag{
+    position:absolute; background:#fff; border:1px solid var(--line);
+    padding:10px 16px; border-radius:14px; font-size:0.8rem; font-weight:600;
+    color:var(--green-deep); box-shadow:0 8px 20px rgba(0,0,0,0.06);
+    display:flex; align-items:center; gap:8px;
+  }
+  .orbit-tag.t1{top:6%; left:-4%;}
+  .orbit-tag.t2{bottom:10%; right:-6%;}
+  .orbit-tag .dot{width:7px; height:7px; border-radius:50%; background:var(--green);}
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr; gap:46px;}
+    .hero p.lead{max-width:100%;}
+    .orbit-tag{display:none;}
+  }
+
+  /* ===================== TRUST STRIP ===================== */
+  .trust-strip{
+    background:var(--green); color:#fff; padding:18px 0;
+  }
+  .trust-strip .wrap{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px;
+    font-family:'Quicksand'; font-weight:600; font-size:0.92rem;
+  }
+  .trust-strip .item{display:flex; align-items:center; gap:9px;}
+  .trust-strip svg{flex-shrink:0;}
+
+  /* ===================== SECTION HEADERS ===================== */
+  .section-head{max-width:640px; margin-bottom:48px;}
+  .section-head h2{font-size:clamp(1.8rem, 3.2vw, 2.5rem);}
+  .section-head p{color:var(--charcoal-soft); font-size:1.05rem; margin-top:10px;}
+  .center{text-align:center; margin-left:auto; margin-right:auto;}
+
+  /* ===================== WHY FRESH (pillars) ===================== */
+  .pillars{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:24px;
+  }
+  .pillar{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius-card);
+    padding:32px 26px; transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .pillar:hover{transform:translateY(-6px); box-shadow:0 16px 32px rgba(3,106,49,0.1);}
+  .pillar .icon-wrap{
+    width:56px; height:56px; border-radius:16px; background:var(--sage);
+    display:flex; align-items:center; justify-content:center; margin-bottom:18px;
+  }
+  .pillar h3{font-size:1.12rem; margin-bottom:8px;}
+  .pillar p{font-size:0.92rem; color:var(--charcoal-soft);}
+
+  @media (max-width:980px){.pillars{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.pillars{grid-template-columns:1fr;}}
+
+  /* ===================== FRESHNESS STORY (split) ===================== */
+  .freshness{
+    background:var(--sage); border-radius:32px; padding:64px;
+    display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center;
+  }
+  .freshness h2{font-size:clamp(1.7rem,3vw,2.2rem); margin-bottom:18px;}
+  .freshness p{color:var(--charcoal-soft); margin-bottom:16px;}
+  .check-list{list-style:none; margin-top:20px; display:grid; gap:14px;}
+  .check-list li{display:flex; gap:12px; align-items:flex-start; font-weight:500;}
+  .check-list svg{flex-shrink:0; margin-top:3px;}
+  .freshness-visual{
+    background:#fff; border-radius:24px; padding:36px;
+    box-shadow:0 20px 40px rgba(3,106,49,0.08);
+  }
+  .freshness-visual .timeline{display:grid; gap:20px;}
+  .tl-row{display:flex; gap:16px; align-items:center;}
+  .tl-num{
+    width:38px; height:38px; border-radius:50%; background:var(--green);
+    color:#fff; display:flex; align-items:center; justify-content:center;
+    font-family:'Quicksand'; font-weight:700; font-size:0.9rem; flex-shrink:0;
+  }
+  .tl-row p{margin:0; font-size:0.93rem;}
+  .tl-row strong{display:block; font-family:'Quicksand'; color:var(--green-deep); font-size:0.98rem;}
+
+  @media (max-width:900px){
+    .freshness{grid-template-columns:1fr; padding:40px 28px; border-radius:24px;}
+  }
+
+  /* ===================== HENS / WELFARE ===================== */
+  .hens{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px; align-items:center;
+  }
+  .hens-visual{display:flex; gap:18px;}
+  .hens-visual .egg-frame{flex:1;}
+  .hens-visual .egg-frame:nth-child(2){margin-top:46px;}
+  .hens-copy h2{margin-bottom:16px;}
+  .hens-copy p{color:var(--charcoal-soft); margin-bottom:22px;}
+  .tag-row{display:flex; flex-wrap:wrap; gap:10px;}
+  .tag-pill{
+    background:#fff; border:1.5px solid var(--green); color:var(--green-deep);
+    padding:9px 18px; border-radius:999px; font-size:0.85rem; font-weight:600;
+    font-family:'Quicksand';
+  }
+  @media (max-width:900px){
+    .hens{grid-template-columns:1fr;}
+    .hens-visual{order:2;}
+  }
+
+  /* ===================== PACK SIZES ===================== */
+  .packs-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
+  .pack-card{
+    background:#fff; border-radius:var(--radius-card); border:1px solid var(--line);
+    padding:38px 30px; text-align:center; position:relative;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .pack-card:hover{transform:translateY(-8px); box-shadow:0 22px 40px rgba(3,106,49,0.14);}
+  .pack-card.popular{border-color:var(--yolk); box-shadow:0 18px 36px rgba(254,191,18,0.18);}
+  .pack-card .ribbon{
+    position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+    background:var(--yolk); color:var(--charcoal); font-family:'Quicksand'; font-weight:700;
+    font-size:0.75rem; padding:6px 16px; border-radius:999px; letter-spacing:0.04em;
+  }
+  .egg-cluster{
+    display:grid; grid-template-columns:repeat(6, 1fr); gap:6px;
+    max-width:170px; margin:0 auto 22px;
+  }
+  .mini-egg{
+    width:100%; aspect-ratio:3/4; border-radius:50% 50% 48% 48%/56% 56% 44% 44%;
+    background:linear-gradient(160deg,#fff 0%, #f1e6c8 60%, #e4d4a3 100%);
+    border:1px solid #e6dcc0;
+  }
+  .pack-card h3{font-size:1.5rem; margin-bottom:4px;}
+  .pack-card .pack-sub{color:var(--charcoal-soft); font-size:0.88rem; margin-bottom:22px;}
+  .pack-card .pack-for{
+    font-size:0.82rem; color:var(--green); font-weight:600; margin-bottom:24px;
+    font-family:'Quicksand';
+  }
+  @media (max-width:900px){.packs-grid{grid-template-columns:1fr; max-width:380px; margin:0 auto;}}
+
+  /* ===================== RECIPES ===================== */
+  .recipes-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:26px;
+  }
+  .recipe-card{
+    background:#fff; border-radius:var(--radius-card); overflow:hidden;
+    border:1px solid var(--line); display:flex; flex-direction:column;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .recipe-card:hover{transform:translateY(-6px); box-shadow:0 18px 36px rgba(3,106,49,0.12);}
+  .recipe-media{
+    height:160px; position:relative; display:flex; align-items:center; justify-content:center;
+    background:var(--sage);
+  }
+  .recipe-time{
+    position:absolute; top:12px; right:12px; background:#fff; font-size:0.74rem;
+    font-weight:700; font-family:'Quicksand'; color:var(--green-deep);
+    padding:5px 11px; border-radius:999px; box-shadow:0 4px 10px rgba(0,0,0,0.08);
+  }
+  .recipe-body{padding:22px 22px 26px; flex:1; display:flex; flex-direction:column;}
+  .recipe-body h3{font-size:1.12rem; margin-bottom:6px;}
+  .recipe-body .recipe-tag{
+    font-size:0.78rem; color:var(--charcoal-soft); margin-bottom:14px; font-weight:500;
+  }
+  .recipe-body details{margin-top:auto;}
+  .recipe-body summary{
+    cursor:pointer; font-family:'Quicksand'; font-weight:700; color:var(--green);
+    font-size:0.9rem; list-style:none; display:flex; align-items:center; gap:6px;
+  }
+  .recipe-body summary::-webkit-details-marker{display:none;}
+  .recipe-body summary::after{content:"+"; font-size:1.2rem; margin-left:auto; transition:transform .2s ease;}
+  .recipe-body details[open] summary::after{content:"–";}
+  .recipe-content{margin-top:14px; font-size:0.88rem; color:var(--charcoal-soft);}
+  .recipe-content h4{font-size:0.82rem; color:var(--green-deep); margin:12px 0 6px; font-family:'Quicksand';}
+  .recipe-content ul, .recipe-content ol{padding-left:18px; display:grid; gap:5px;}
+
+  @media (max-width:980px){.recipes-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.recipes-grid{grid-template-columns:1fr;}}
+
+  /* ===================== B2B / WHO WE SERVE ===================== */
+  .biz-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:22px;}
+  .biz-card{
+    background:var(--green); color:#fff; border-radius:var(--radius-card);
+    padding:30px 24px; min-height:190px; display:flex; flex-direction:column; justify-content:space-between;
+    transition:transform .25s ease;
+  }
+  .biz-card:nth-child(2){background:var(--green-deep);}
+  .biz-card:nth-child(3){background:#0b5c2c;}
+  .biz-card:nth-child(4){background:#024d23;}
+  .biz-card:hover{transform:translateY(-6px);}
+  .biz-card h3{color:#fff; font-size:1.1rem;}
+  .biz-card p{color:rgba(255,255,255,0.78); font-size:0.85rem; margin-top:8px;}
+  @media (max-width:980px){.biz-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.biz-grid{grid-template-columns:1fr;}}
+
+  /* ===================== DELIVERY PLATFORMS (coming soon) ===================== */
+  .platforms-section{background:var(--sage); border-radius:32px;}
+  .platforms-grid{
+    display:grid; grid-template-columns:repeat(5,1fr); gap:18px; margin-top:8px;
+  }
+  .platform-card{
+    background:#fff; border-radius:18px; padding:26px 14px 22px; text-align:center;
+    display:flex; flex-direction:column; align-items:center; gap:14px;
+    border:1px solid var(--line); position:relative; overflow:hidden;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .platform-card:hover{transform:translateY(-5px); box-shadow:0 14px 28px rgba(3,106,49,0.1);}
+  .platform-card .soon-tag{
+    position:absolute; top:10px; right:10px; background:var(--yolk); color:var(--charcoal);
+    font-size:0.62rem; font-weight:700; padding:3px 9px; border-radius:999px;
+    font-family:'Quicksand'; letter-spacing:0.03em; z-index:2;
+  }
+  .platform-card .logo-tile{
+    width:64px; height:64px; border-radius:16px; overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 4px 10px rgba(0,0,0,0.06);
+  }
+  .platform-card .logo-tile img{width:100%; height:100%; object-fit:cover;}
+  .platform-card.wide .logo-tile{
+    width:auto; height:48px; border-radius:10px; padding:6px 12px;
+    box-shadow:none;
+  }
+  .platform-card.wide .logo-tile img{width:auto; height:100%; object-fit:contain;}
+  .platform-card.lockup .logo-tile{
+    width:auto; height:40px; border-radius:0; box-shadow:none;
+  }
+  .platform-card.lockup .logo-tile img{width:auto; height:100%; object-fit:contain;}
+  .platform-card span{font-size:0.82rem; font-weight:600; color:var(--charcoal-soft); font-family:'Quicksand';}
+  @media (max-width:900px){.platforms-grid{grid-template-columns:repeat(3,1fr);}}
+  @media (max-width:560px){.platforms-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* ===================== CONTACT ===================== */
+  .contact{
+    display:grid; grid-template-columns:1fr 1fr; gap:54px; align-items:start;
+  }
+  .contact-card{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius-card);
+    padding:34px;
+  }
+  .contact-row{
+    display:flex; gap:16px; align-items:flex-start; padding:18px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .contact-row:last-child{border-bottom:none;}
+  .contact-row .icon-wrap{
+    width:44px; height:44px; border-radius:12px; background:var(--sage);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .contact-row strong{display:block; font-family:'Quicksand'; color:var(--green-deep); font-size:0.95rem;}
+  .contact-row span, .contact-row a{font-size:0.95rem; color:var(--charcoal-soft);}
+  .contact-row a:hover{color:var(--green); text-decoration:underline;}
+  .social-row{display:flex; gap:14px; margin-top:24px;}
+  .social-circle{
+    width:46px; height:46px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    background:var(--sage); transition:transform .2s ease, background .2s ease;
+  }
+  .social-circle:hover{transform:translateY(-4px) scale(1.05);}
+
+  .lead-form{background:#fff; border:1px solid var(--line); border-radius:var(--radius-card); padding:34px;}
+  .lead-form h3{font-size:1.2rem; margin-bottom:18px;}
+  .form-row{display:grid; gap:16px; margin-bottom:16px;}
+  .form-row.two{grid-template-columns:1fr 1fr;}
+  .form-row label{font-size:0.82rem; font-weight:600; color:var(--charcoal-soft); margin-bottom:6px; display:block;}
+  .form-row input, .form-row select, .form-row textarea{
+    width:100%; padding:12px 14px; border:1.5px solid var(--line); border-radius:12px;
+    font-family:'Inter'; font-size:0.92rem; background:var(--shell); color:var(--charcoal);
+  }
+  .form-row input:focus, .form-row select:focus, .form-row textarea:focus{
+    outline:2px solid var(--green); outline-offset:1px; border-color:var(--green);
+  }
+  .lead-form .btn{width:100%; justify-content:center; margin-top:6px;}
+  .form-note{font-size:0.78rem; color:var(--charcoal-soft); margin-top:12px; text-align:center;}
+
+  @media (max-width:900px){.contact{grid-template-columns:1fr;}}
+
+  /* ===================== FOOTER ===================== */
+  footer{background:var(--green-deep); color:rgba(255,255,255,0.85); padding:54px 0 26px;}
+  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:40px;}
+  .footer-grid h4{color:#fff; font-size:0.95rem; margin-bottom:16px;}
+  .footer-grid ul{list-style:none; display:grid; gap:10px;}
+  .footer-grid a{color:rgba(255,255,255,0.75); font-size:0.9rem;}
+  .footer-grid a:hover{color:var(--yolk);}
+  .footer-brand img{height:32px; margin-bottom:14px; filter:brightness(0) invert(1);}
+  .footer-brand p{font-size:0.88rem; color:rgba(255,255,255,0.7); max-width:280px;}
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,0.15); padding-top:22px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-size:0.8rem; color:rgba(255,255,255,0.6);
+  }
+  @media (max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:560px){.footer-grid{grid-template-columns:1fr;}}
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible, summary:focus-visible{
+    outline:2px solid var(--yolk); outline-offset:2px; border-radius:4px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <nav class="nav">
+    <a href="#top" class="brand">
+      <img src="assets/eggmor-logo.webp" alt="Eggmor logo">
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="#freshness">Freshness</a>
+      <a href="#hens">Our Hens</a>
+      <a href="#packs">Pack Sizes</a>
+      <a href="#recipes">Recipes</a>
+      <a href="#business">For Business</a>
+      <a href="#platforms">Where to Buy</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#contact" class="btn"><span class="full">Get in Touch</span><span>Contact</span></a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Farm to Door, No Cold Chain</p>
+        <h1>Fresh eggs that<br>don't need a <em>fridge</em>.</h1>
+        <p class="lead">Eggmor eggs are cleaned, graded and packed for real freshness — so they hold up on your kitchen shelf, not just in cold storage. No refrigeration. No shortcuts. Just honest eggs from cage-free hens.</p>
+        <div class="hero-ctas">
+          <a href="#packs" class="btn">See Pack Sizes</a>
+          <a href="#contact" class="btn ghost">Bulk &amp; Retail Orders</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>0°C</strong><span>refrigeration required</span></div>
+          <div><strong>100%</strong><span>cage-free hens</span></div>
+          <div><strong>6 / 12 / 30</strong><span>pack sizes available</span></div>
+        </div>
+      </div>
+      <div class="hero-visual reveal">
+        <div class="orbit-tag t1"><span class="dot"></span> Shelf-stable freshness</div>
+        <div class="yolk-orb">
+          <div class="shine"></div>
+          <span class="badge">Cracked fresh daily</span>
+        </div>
+        <div class="orbit-tag t2"><span class="dot"></span> Cage-free, always</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRUST STRIP ============ -->
+  <div class="trust-strip">
+    <div class="wrap">
+      <div class="item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4z" fill="#fff" opacity="0.9"/></svg>
+        No refrigeration needed
+      </div>
+      <div class="item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="2"/><path d="M8 12l2.5 2.5L16 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Cage-free hens
+      </div>
+      <div class="item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 8l7-5 7 5M5 8v8l7 5 7-5V8" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        Sanitised &amp; hygienically packed
+      </div>
+      <div class="item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="2" stroke="#fff" stroke-width="1.6"/><path d="M8 7V5a4 4 0 018 0v2" stroke="#fff" stroke-width="1.6"/></svg>
+        Packs of 6, 12 &amp; 30
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ WHY FRESHNESS PILLARS ============ -->
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Why Eggmor</p>
+        <h2>Freshness, the honest way</h2>
+        <p>Most eggs travel through cold storage to fake freshness. Ours don't need to — here's how we keep every egg genuinely fresh from coop to counter.</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar reveal">
+          <div class="icon-wrap">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2c4 4 7 8 7 12a7 7 0 11-14 0c0-4 3-8 7-12z" stroke="#036A31" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>No refrigeration</h3>
+          <p>Naturally fresh and shelf-stable — store at room temperature, no cold chain dependency.</p>
+        </div>
+        <div class="pillar reveal">
+          <div class="icon-wrap">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 12c2-5 6-8 9-8s7 3 9 8c-2 5-6 8-9 8s-7-3-9-8z" stroke="#036A31" stroke-width="1.7"/><circle cx="12" cy="12" r="2.6" stroke="#036A31" stroke-width="1.7"/></svg>
+          </div>
+          <h3>No fixed shelves</h3>
+          <p>Packed for movement, not for sitting in storage — built for daily turnover, not stockpiling.</p>
+        </div>
+        <div class="pillar reveal">
+          <div class="icon-wrap">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 21c5-3 8-7 8-12V5l-8-3-8 3v4c0 5 3 9 8 12z" stroke="#036A31" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Cage-free hens</h3>
+          <p>Our hens roam free in open, clean environments — happier hens, better eggs.</p>
+        </div>
+        <div class="pillar reveal">
+          <div class="icon-wrap">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#036A31" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Hygiene first</h3>
+          <p>Every egg is washed, sanitised and inspected before it's packed and sealed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FRESHNESS STORY ============ -->
+  <section id="freshness">
+    <div class="wrap">
+      <div class="freshness reveal">
+        <div>
+          <p class="eyebrow">The Eggmor Process</p>
+          <h2>Why Eggmor doesn't need a fridge</h2>
+          <p>Commercial eggs are often cold-chained to mask age. We take the opposite approach: clean the egg properly, pack it fast, and get it to you before time becomes a problem.</p>
+          <ul class="check-list">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#036A31"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Eggs collected and cleaned within hours of laying</span>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#036A31"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Sanitised shell removes bacteria without sealing in moisture loss</span>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#036A31"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Packed and dispatched fast — no long cold-storage holding periods</span>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#036A31"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Stays fresh on a regular kitchen counter — no fridge dependency</span>
+            </li>
+          </ul>
+        </div>
+        <div class="freshness-visual">
+          <div class="timeline">
+            <div class="tl-row">
+              <div class="tl-num">1</div>
+              <div><strong>Laid &amp; collected</strong><p>Gathered same-day from cage-free coops.</p></div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-num">2</div>
+              <div><strong>Washed &amp; sanitised</strong><p>Hygienic cleaning removes dirt and pathogens.</p></div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-num">3</div>
+              <div><strong>Graded &amp; packed</strong><p>Sorted by size, sealed into 6 / 12 / 30 packs.</p></div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-num">4</div>
+              <div><strong>Delivered fast</strong><p>Reaches you without ever needing cold storage.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HENS / WELFARE ============ -->
+  <section id="hens">
+    <div class="wrap hens">
+      <div class="hens-visual reveal">
+        <img class="egg-frame" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 400'%3E%3Crect width='300' height='400' fill='%23E9F0E4'/%3E%3Ccircle cx='150' cy='200' r='70' fill='%23FEBF12' opacity='0.85'/%3E%3C/svg%3E" alt="Cage-free hens roaming in an open coop">
+        <img class="egg-frame" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 400'%3E%3Crect width='300' height='400' fill='%23036A31' opacity='0.12'/%3E%3Ccircle cx='150' cy='150' r='55' fill='%23036A31' opacity='0.5'/%3E%3C/svg%3E" alt="Eggs being graded and packed hygienically">
+      </div>
+      <div class="hens-copy reveal">
+        <p class="eyebrow">Our Hens</p>
+        <h2>Cage-free, always — not just a label</h2>
+        <p>Our hens live in open, ventilated environments where they can move, perch and forage freely. No cages, no crowding. Healthier hens lay better eggs — it's that simple, and we don't cut corners on it.</p>
+        <p>Every flock is housed under strict cleanliness protocols, with regular health checks and sanitised coop conditions, so what leaves the farm is as clean as it is fresh.</p>
+        <div class="tag-row">
+          <span class="tag-pill">Cage-free housing</span>
+          <span class="tag-pill">Open-space movement</span>
+          <span class="tag-pill">Routine health checks</span>
+          <span class="tag-pill">Hygienic coop standards</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PACK SIZES ============ -->
+  <section id="packs">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <p class="eyebrow">Pack Sizes</p>
+        <h2>Pick the pack that fits your kitchen</h2>
+        <p>From a small household top-up to a full restaurant restock — Eggmor comes in three sizes, all sealed fresh, all fridge-free.</p>
+      </div>
+      <div class="packs-grid">
+        <div class="pack-card reveal">
+          <div class="egg-cluster">
+            <div class="mini-egg"></div><div class="mini-egg"></div><div class="mini-egg"></div>
+            <div class="mini-egg"></div><div class="mini-egg"></div><div class="mini-egg"></div>
+          </div>
+          <h3>Pack of 6</h3>
+          <p class="pack-sub">The everyday top-up tray</p>
+          <p class="pack-for">Best for individuals &amp; small households</p>
+          <a href="#contact" class="btn ghost">Enquire</a>
+        </div>
+        <div class="pack-card popular reveal">
+          <span class="ribbon">MOST POPULAR</span>
+          <div class="egg-cluster">
+            <div class="mini-egg"></div><div class="mini-egg"></div><div class="mini-egg"></div>
+            <div class="mini-egg"></div><div class="mini-egg"></div><div class="mini-egg"></div>
+          </div>
+          <h3>Pack of 12</h3>
+          <p class="pack-sub">The household standard</p>
+          <p class="pack-for">Best for families &amp; weekly cooking</p>
+          <a href="#contact" class="btn">Enquire</a>
+        </div>
+        <div class="pack-card reveal">
+          <div class="egg-cluster">
+            <div class="mini-egg"></div><div class="mini-egg"></div><div class="mini-egg"></div>
+            <div class="mini-egg"></div><div class="mini-egg"></div><div class="mini-egg"></div>
+          </div>
+          <h3>Pack of 30</h3>
+          <p class="pack-sub">The bulk crate</p>
+          <p class="pack-for">Best for canteens, restaurants &amp; cloud kitchens</p>
+          <a href="#contact" class="btn ghost">Enquire</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RECIPES ============ -->
+  <section id="recipes">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <p class="eyebrow">Eggmor Kitchen</p>
+        <h2>Recipes worth cracking an egg for</h2>
+        <p>Simple, everyday recipes that taste better when the egg actually is fresh.</p>
+      </div>
+      <div class="recipes-grid">
+
+        <!-- Egg Bhurji -->
+        <div class="recipe-card reveal">
+          <div class="recipe-media">
+            <span class="recipe-time">15 min</span>
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none"><path d="M4 13c0-4 3.5-7 8-7s8 3 8 7" stroke="#036A31" stroke-width="1.6" fill="none"/><path d="M3 13h18a1 1 0 011 1 2 2 0 01-2 2H4a2 2 0 01-2-2 1 1 0 011-1z" fill="#FEBF12" opacity="0.85"/></svg>
+          </div>
+          <div class="recipe-body">
+            <h3>Egg Bhurji</h3>
+            <p class="recipe-tag">Spiced scrambled eggs · Serves 2</p>
+            <details>
+              <summary>View recipe</summary>
+              <div class="recipe-content">
+                <h4>Ingredients</h4>
+                <ul>
+                  <li>4 Eggmor eggs</li>
+                  <li>1 onion, finely chopped</li>
+                  <li>1 tomato, chopped</li>
+                  <li>1 green chilli, chopped</li>
+                  <li>¼ tsp turmeric, ½ tsp chilli powder</li>
+                  <li>Salt, coriander, 1 tbsp oil</li>
+                </ul>
+                <h4>Method</h4>
+                <ol>
+                  <li>Heat oil, sauté onion and chilli till soft.</li>
+                  <li>Add tomato, turmeric, chilli powder; cook till mushy.</li>
+                  <li>Crack in eggs, season with salt, scramble until just set.</li>
+                  <li>Finish with coriander; serve with toast or roti.</li>
+                </ol>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <!-- Fried Boiled Egg -->
+        <div class="recipe-card reveal">
+          <div class="recipe-media">
+            <span class="recipe-time">12 min</span>
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="13" rx="8" ry="6" fill="#fff" stroke="#036A31" stroke-width="1.4"/><circle cx="12" cy="13" r="3.2" fill="#FEBF12"/></svg>
+          </div>
+          <div class="recipe-body">
+            <h3>Fried Boiled Egg</h3>
+            <p class="recipe-tag">Crisp-edged half-fry · Serves 1</p>
+            <details>
+              <summary>View recipe</summary>
+              <div class="recipe-content">
+                <h4>Ingredients</h4>
+                <ul>
+                  <li>2 Eggmor eggs, boiled &amp; peeled</li>
+                  <li>1 tbsp oil or ghee</li>
+                  <li>½ tsp chilli powder, pinch of salt</li>
+                  <li>Curry leaves (optional)</li>
+                </ul>
+                <h4>Method</h4>
+                <ol>
+                  <li>Boil eggs for 9–10 minutes, cool, peel, halve.</li>
+                  <li>Heat oil in a pan, place eggs cut-side down.</li>
+                  <li>Sprinkle chilli powder and salt, fry till edges crisp.</li>
+                  <li>Toss with curry leaves and serve hot.</li>
+                </ol>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <!-- Omelette -->
+        <div class="recipe-card reveal">
+          <div class="recipe-media">
+            <span class="recipe-time">10 min</span>
+            <svg width="56" height="40" viewBox="0 0 24 24" fill="none"><path d="M3 12c0-4 4-7 9-7s9 3 9 7-4 5-9 5-9-1-9-5z" fill="#FEBF12" opacity="0.9"/></svg>
+          </div>
+          <div class="recipe-body">
+            <h3>Classic Omelette</h3>
+            <p class="recipe-tag">Fluffy folded eggs · Serves 1</p>
+            <details>
+              <summary>View recipe</summary>
+              <div class="recipe-content">
+                <h4>Ingredients</h4>
+                <ul>
+                  <li>3 Eggmor eggs</li>
+                  <li>2 tbsp chopped onion, tomato, chilli</li>
+                  <li>Salt &amp; pepper to taste</li>
+                  <li>1 tbsp butter or oil</li>
+                </ul>
+                <h4>Method</h4>
+                <ol>
+                  <li>Whisk eggs with salt and pepper till frothy.</li>
+                  <li>Heat butter in a non-stick pan on medium-low.</li>
+                  <li>Pour in eggs, scatter veggies, cover briefly.</li>
+                  <li>Fold in half once set; serve immediately.</li>
+                </ol>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <!-- Egg Curry -->
+        <div class="recipe-card reveal">
+          <div class="recipe-media">
+            <span class="recipe-time">35 min</span>
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="13" r="9" fill="#c84b1e" opacity="0.18"/><circle cx="9" cy="11" r="3.4" fill="#fff" stroke="#036A31" stroke-width="1.2"/><circle cx="9" cy="11" r="1.3" fill="#FEBF12"/><circle cx="15" cy="14" r="3.4" fill="#fff" stroke="#036A31" stroke-width="1.2"/><circle cx="15" cy="14" r="1.3" fill="#FEBF12"/></svg>
+          </div>
+          <div class="recipe-body">
+            <h3>Egg Curry</h3>
+            <p class="recipe-tag">Onion-tomato gravy · Serves 3</p>
+            <details>
+              <summary>View recipe</summary>
+              <div class="recipe-content">
+                <h4>Ingredients</h4>
+                <ul>
+                  <li>6 Eggmor eggs, boiled &amp; peeled</li>
+                  <li>2 onions, 2 tomatoes, blended</li>
+                  <li>1 tbsp ginger-garlic paste</li>
+                  <li>Turmeric, chilli powder, garam masala</li>
+                  <li>2 tbsp oil, salt, coriander</li>
+                </ul>
+                <h4>Method</h4>
+                <ol>
+                  <li>Sauté ginger-garlic paste in oil till fragrant.</li>
+                  <li>Add onion-tomato purée and spices; cook till thick.</li>
+                  <li>Add water to desired consistency; simmer 10 min.</li>
+                  <li>Slit boiled eggs, add to gravy, simmer 5 min more.</li>
+                  <li>Garnish with coriander; serve with rice or roti.</li>
+                </ol>
+              </div>
+            </details>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOR BUSINESS ============ -->
+  <section id="business">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">For Business</p>
+        <h2>Bulk supply for every kind of kitchen</h2>
+        <p>Eggmor's pack of 30 and custom bulk orders are built for businesses that need consistent, fresh, high-volume egg supply — without the cold storage burden.</p>
+      </div>
+      <div class="biz-grid">
+        <div class="biz-card reveal">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M3 9l9-6 9 6v10a1 1 0 01-1 1h-5v-7H9v7H4a1 1 0 01-1-1V9z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          <div>
+            <h3>Retail Stores</h3>
+            <p>Reliable shelf stock with consistent grading, sized for daily walk-in demand.</p>
+          </div>
+        </div>
+        <div class="biz-card reveal">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M4 21V9l8-6 8 6v12M9 21v-6h6v6" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          <div>
+            <h3>Canteens</h3>
+            <p>High-volume packs for institutional kitchens — schools, offices and hostels.</p>
+          </div>
+        </div>
+        <div class="biz-card reveal">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M4 19h16M6 19V9l3-4h6l3 4v10" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          <div>
+            <h3>Restaurants</h3>
+            <p>Consistent quality and supply for kitchens that can't afford an off day.</p>
+          </div>
+        </div>
+        <div class="biz-card reveal">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><rect x="3" y="8" width="18" height="12" rx="2" stroke="#fff" stroke-width="1.5"/><path d="M8 8V6a4 4 0 018 0v2" stroke="#fff" stroke-width="1.5"/></svg>
+          <div>
+            <h3>Cloud Kitchens</h3>
+            <p>Fast, frequent restocks built for delivery-first kitchens with tight turnarounds.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DELIVERY PLATFORMS ============ -->
+  <section id="platforms">
+    <div class="wrap platforms-section">
+      <div style="padding:64px 56px 56px;">
+        <div class="section-head center reveal">
+          <p class="eyebrow">Coming Soon</p>
+          <h2>Soon on your favourite delivery apps</h2>
+          <p>We're bringing Eggmor to quick-commerce and food delivery platforms so fresh eggs are just a tap away.</p>
+        </div>
+        <div class="platforms-grid">
+
+          <div class="platform-card reveal">
+            <span class="soon-tag">SOON</span>
+            <div class="logo-tile"><img src="assets/platforms/blinkit.png" alt="Blinkit logo"></div>
+            <span>Blinkit</span>
+          </div>
+
+          <div class="platform-card wide reveal">
+            <span class="soon-tag">SOON</span>
+            <div class="logo-tile"><img src="assets/platforms/zepto.png" alt="Zepto logo"></div>
+            <span>Zepto</span>
+          </div>
+
+          <div class="platform-card reveal">
+            <span class="soon-tag">SOON</span>
+            <div class="logo-tile"><img src="assets/platforms/swiggy.png" alt="Swiggy logo"></div>
+            <span>Swiggy</span>
+          </div>
+
+          <div class="platform-card lockup reveal">
+            <span class="soon-tag">SOON</span>
+            <div class="logo-tile"><img src="assets/platforms/instamart.jpg" alt="Swiggy Instamart logo"></div>
+            <span>Instamart</span>
+          </div>
+
+          <div class="platform-card reveal">
+            <span class="soon-tag">SOON</span>
+            <div class="logo-tile"><img src="assets/platforms/zomato.png" alt="Zomato logo"></div>
+            <span>Zomato</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Get In Touch</p>
+        <h2>Let's talk fresh eggs</h2>
+        <p>Retail stocking, canteen supply, restaurant accounts or cloud kitchen partnerships — reach out and we'll set up the right pack size and delivery schedule for you.</p>
+      </div>
+
+      <div class="contact">
+        <div class="reveal">
+          <div class="contact-card">
+            <div class="contact-row">
+              <div class="icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.9.32 1.78.6 2.63a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.45-1.17a2 2 0 012.11-.45c.85.28 1.73.48 2.63.6a2 2 0 011.72 2z" stroke="#036A31" stroke-width="1.6" stroke-linejoin="round"/></svg>
+              </div>
+              <div><strong>Call us</strong><a href="tel:+918827006529">+91 88270 06529</a></div>
+            </div>
+            <div class="contact-row">
+              <div class="icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke="#036A31" stroke-width="1.6" stroke-linejoin="round"/><path d="M4 5l8 7 8-7" stroke="#036A31" stroke-width="1.6" stroke-linejoin="round"/></svg>
+              </div>
+              <div><strong>Email us</strong><a href="mailto:eggmor6@gmail.com">eggmor6@gmail.com</a></div>
+            </div>
+            <div class="contact-row">
+              <div class="icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2C7 2 4 5.5 4 10c0 6 8 12 8 12s8-6 8-12c0-4.5-3-8-8-8z" stroke="#036A31" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.6" stroke="#036A31" stroke-width="1.6"/></svg>
+              </div>
+              <div><strong>Bulk &amp; retail enquiries</strong><span>Retail · Canteens · Restaurants · Cloud Kitchens</span></div>
+            </div>
+
+            <div class="social-row">
+              <a class="social-circle" href="https://youtube.com/@eggmor_eggs?si=z7-oNbogsyE0Fa4c" target="_blank" rel="noopener" aria-label="Eggmor on YouTube">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="4" fill="#FF0000"/><path d="M10 9l6 3-6 3z" fill="#fff"/></svg>
+              </a>
+              <a class="social-circle" href="https://www.facebook.com/share/1GQuUN37aP/" target="_blank" rel="noopener" aria-label="Eggmor on Facebook">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#1877F2"/><path d="M15 8h-1.5c-.6 0-1 .5-1 1.2V11h2.3l-.3 2.3h-2v6.6h-2.6v-6.6H8v-2.3h1.9V9c0-1.8 1.2-3 3-3H15v2z" fill="#fff"/></svg>
+              </a>
+              <a class="social-circle" href="https://instagram.com/eggmor_eggs" target="_blank" rel="noopener" aria-label="Eggmor on Instagram">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <defs>
+                    <radialGradient id="igGrad" cx="0.3" cy="1" r="1.2">
+                      <stop offset="0%" stop-color="#FFDD55"/>
+                      <stop offset="35%" stop-color="#FF543E"/>
+                      <stop offset="70%" stop-color="#C837AB"/>
+                      <stop offset="100%" stop-color="#5851DB"/>
+                    </radialGradient>
+                  </defs>
+                  <rect x="2" y="2" width="20" height="20" rx="6" fill="url(#igGrad)"/>
+                  <rect x="6.5" y="6.5" width="11" height="11" rx="3.5" stroke="#fff" stroke-width="1.5" fill="none"/>
+                  <circle cx="12" cy="12" r="3.2" stroke="#fff" stroke-width="1.5" fill="none"/>
+                  <circle cx="16.3" cy="7.7" r="1" fill="#fff"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <form class="lead-form" action="https://formspree.io/f/mvzjankz" method="POST">
+            <h3>Request a callback</h3>
+            <input type="hidden" name="_replyto" value="eggmor6@gmail.com">
+            <div class="form-row">
+              <label for="name">Full name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" required>
+            </div>
+            <div class="form-row two">
+              <div>
+                <label for="phone">Phone number</label>
+                <input id="phone" name="phone" type="tel" placeholder="+91 00000 00000" required>
+              </div>
+              <div>
+                <label for="biztype">I am a</label>
+                <select id="biztype" name="biztype">
+                  <option>Retail Store</option>
+                  <option>Canteen</option>
+                  <option>Restaurant</option>
+                  <option>Cloud Kitchen</option>
+                  <option>Individual Customer</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="msg">What do you need?</label>
+              <textarea id="msg" name="message" rows="3" placeholder="Pack size, quantity, delivery frequency..."></textarea>
+            </div>
+            <button type="submit" class="btn">Send Enquiry</button>
+            <p class="form-note">We typically respond within 24 hours.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/eggmor-logo.webp" alt="Eggmor logo">
+        <p>Fresh, cage-free eggs delivered without refrigeration or cold storage — for homes and businesses alike.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#freshness">Freshness Process</a></li>
+          <li><a href="#hens">Our Hens</a></li>
+          <li><a href="#packs">Pack Sizes</a></li>
+          <li><a href="#recipes">Recipes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Business</h4>
+        <ul>
+          <li><a href="#business">Retail</a></li>
+          <li><a href="#business">Canteens</a></li>
+          <li><a href="#business">Restaurants</a></li>
+          <li><a href="#business">Cloud Kitchens</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+918827006529">+91 88270 06529</a></li>
+          <li><a href="mailto:eggmor6@gmail.com">eggmor6@gmail.com</a></li>
+          <li><a href="https://youtube.com/@eggmor_eggs?si=z7-oNbogsyE0Fa4c" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.facebook.com/share/1GQuUN37aP/" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Eggmor. All rights reserved.</span>
+      <span>Cage-free hens · Hygienically packed · No refrigeration needed</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // mobile menu
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    const expanded = navLinks.classList.contains('open');
+    menuToggle.setAttribute('aria-expanded', expanded);
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
